@@ -1,8 +1,0 @@
--------------------------------------------------
-Mon 6 Feb 00:02:01 UTC 2017 - start weewx db backup
-stop the weewx daemon and wait 30 seconds
-dump sqlite3 database
-restart the weewx daemon
-/home/weewx/backup/weewx_backup.sh: line 29: s3_archive.sh: command not found
-Mon 6 Feb 00:02:42 UTC 2017 - end weewx db backup
--------------------------------------------------
