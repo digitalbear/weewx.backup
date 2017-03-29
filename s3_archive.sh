@@ -14,7 +14,7 @@ s3cmd put $BACKUP_FILE $S3_BUCKET/daily/
 
 if [ $? -eq 0 ]; then
   echo 'remove daily backups from S3 more than 1 week old'
-  s3cmd ls $S3_BUCKET/daily/ | awk '$4 != "$S3_BUCKET/daily/"' | awk '$1 < "'$(date +%F -d '1 week ago')'" {print $4;}' | xargs --no-run-if-empty s3cmd del
+  s3cmd ls $S3_BUCKET/daily/weewx* | awk '$4 != "$S3_BUCKET/daily/"' | awk '$1 < "'$(date +%F -d '1 week ago')'" {print $4;}' | xargs --no-run-if-empty s3cmd del
 else
   retn_code=1
 fi
@@ -29,7 +29,7 @@ if [ `date +%w` == "0" ]; then
 
   if [ $? -eq 0 ]; then
     echo 'remove weekly backups from S3 more than 1 month old'
-    s3cmd ls $S3_BUCKET/weekly/ | awk '$4 != "$S3_BUCKET/weekly/"' | awk '$1 < "'$(date +%F -d '1 month ago')'" {print $4;}' | xargs --no-run-if-empty s3cmd del
+    s3cmd ls $S3_BUCKET/weekly/weewx* | awk '$4 != "$S3_BUCKET/weekly/"' | awk '$1 < "'$(date +%F -d '1 month ago')'" {print $4;}' | xargs --no-run-if-empty s3cmd del
   else
     retn_code=1
   fi
@@ -46,7 +46,7 @@ if [ `date +%d` == "01" ]; then
 
   if [ $? -eq 0 ]; then
     echo 'remove monthly backups from S3 more than 1 year old'
-#    s3cmd ls $S3_BUCKET/monthly/ | awk '$4 != "$S3_BUCKET/monthly/"' | awk '$1 < "'$(date +%F -d '1 year ago')'" {print $4;}' | xargs --no-run-if-empty s3cmd del
+#    s3cmd ls $S3_BUCKET/monthly/weewx* | awk '$4 != "$S3_BUCKET/monthly/"' | awk '$1 < "'$(date +%F -d '1 year ago')'" {print $4;}' | xargs --no-run-if-empty s3cmd del
   else
     retn_code=1
   fi
