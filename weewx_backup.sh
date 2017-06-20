@@ -5,7 +5,7 @@ echo `date` - start weewx db backup
 
 export PATH=/home/weewx/backup:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
 
-WEEWX_DB=/home/weewx/ws2083/archive/weewx.sdb
+WEEWX_DB=/home/weewx/archive/weewx.sdb
 TODAY=`date +"%Y-%m-%d"`
 DUMP_FILE=/home/weewx/backup/weewx.dump.$TODAY.gz
 S3_BUCKET=s3://dubweather-backup
