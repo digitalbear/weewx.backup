@@ -11,7 +11,7 @@ DUMP_FILE=/home/weewx/backup/weewx.dump.$TODAY.gz
 S3_BUCKET=s3://dubweather-backup
 
 echo 'stop the weewx daemon and wait 30 seconds'
-service weewx stop
+sudo /usr/sbin/service weewx stop
 retn_code=$?
 if [ $retn_code -ne 0 ]; then
   exit 7
@@ -23,7 +23,7 @@ echo 'dump sqlite3 database'
 echo '.dump' | sqlite3 $WEEWX_DB | gzip -c > $DUMP_FILE
 
 echo 'restart the weewx daemon'
-service weewx start
+sudo /usr/sbin/service weewx start
 
 # call script to manage daily/weekly/monthly/annual archiving to S3
 s3_archive.sh $DUMP_FILE $S3_BUCKET
