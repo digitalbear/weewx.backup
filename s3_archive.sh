@@ -47,7 +47,7 @@ if [[ "$(date +%d)" == "01" ]]; then
 
   if [[ "$retn_code" -eq 0 ]]; then
     echo 'remove monthly backups from S3 more than 1 year old'
-#    s3cmd ls "$S3_BUCKET"/monthly/weewx* | awk '$4 != ""$S3_BUCKET"/monthly/"' | awk '$1 < "'"$(date +%F -d '1 year ago')"'" {print $4;}' | xargs --no-run-if-empty s3cmd del
+    s3cmd ls "$S3_BUCKET"/monthly/weewx* | awk '$4 != ""$S3_BUCKET"/monthly/"' | awk '$1 < "'"$(date +%F -d '1 year ago')"'" {print $4;}' | xargs --no-run-if-empty s3cmd del
     retn_code=$?
   fi
 
